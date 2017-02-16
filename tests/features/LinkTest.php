@@ -14,4 +14,19 @@ class LinkTest extends TestCase
         $this->visit('/')
             ->see('dotdev.co');
     }
+
+    public function testWeSeeLinksForm()
+    {
+        $this->visit('/submit')
+            ->see('Submit a link');
+    }
+
+    public function testLinksFormValidation()
+    {
+        $this->visit('/submit')
+            ->press('Submit')
+            ->see('The title field is required')
+            ->see('The url field is required')
+            ->see('The description field is required');
+    }
 }
